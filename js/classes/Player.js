@@ -62,8 +62,9 @@ function Player(passedInStage, x,y) {
   }
 
   this.move = function (vx,vy){
-    this.shape.vx *= .999;
-    this.shape.vy *= .999;
+    this.shape.vx *= .98;
+    this.shape.vy *= .98;
+    console.log(this.shape.vx);
     this.shape.x += this.shape.vx;
     this.shape.y += this.shape.vy
 

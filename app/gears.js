@@ -59,12 +59,15 @@ define([
           }
 
           var keystrokes = []; // Or you could call it "key"
+          var keystrokesU = []; // Or you could call it "key"
           onkeydown = onkeyup = function(e){
 
               e = e || event; // to deal with IE
               keystrokes[e.keyCode] = e.type == 'keydown';
+              keystrokesU[e.keyCode] = e.type == 'keyup';
+
               ///console.log(keystrokes)
-              if(keystrokes[32] && playerShip.active == true){
+              if(keystrokesU[32] && playerShip.active == true){
                 var vector = radianDirConv(playerShip.shape.rotation);
                 var bullet = new Particle(stage,1.5,playerShip.shape.x,playerShip.shape.y, vector[0]*5,vector[1]*5, bulletLife, playerShip.shape.vx, playerShip.shape.vy);
 
@@ -82,13 +85,12 @@ define([
                 var radian = ((playerShip.shape.rotation-90) * Math.PI)/180;
                 var XSpeed =  Math.cos(radian);
                 var YSpeed =  Math.sin(radian);
-                  playerShip.shape.vx += XSpeed;
-
-                  playerShip.shape.vy += YSpeed;
+                playerShip.shape.vx += XSpeed;
+                playerShip.shape.vy += YSpeed;
 
 
               }
-              if(keystrokes[40] && player.active == true){
+              if(keystrokes[40] && playerShip.active == true){
 
                 var radian = ((playerShip.shape.rotation-90) * Math.PI)/180;
                 var XSpeed =  -Math.cos(radian);
